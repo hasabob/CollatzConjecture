@@ -25,6 +25,10 @@ int saveFile(const char* filename, const unsigned long long value)
 {
 	// Setup
 	ofstream file(filename);
+	if (!file.is_open())
+	{
+		cout << "ERR CREATING FILE\n";
+	}
 
 	// Save File
 	file << value;
@@ -36,17 +40,23 @@ int saveFile(const char* filename, const unsigned long long value)
 unsigned long long readFile(const char* filename)
 {
 	string line;
-	ifstream myfile(filename);
+	ifstream file(filename);
 	unsigned long long value = 0;
 
-	if (myfile)
+	if (file)
 	{
-		myfile >> value;
-		myfile.close();
+		file >> value;
+		file.close();
 	}
 	else
 	{
-		cout << "Unable to open file";
+		cout << "Unable to open file\nCreating File\n";
+		ofstream myfile(filename);
+		if (!myfile.is_open())
+		{
+			cout << "FAILED\n";
+		}
+		myfile.close();
 	}
 
 	return value;
