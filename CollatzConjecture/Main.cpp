@@ -1,4 +1,4 @@
-#include "Include/Functions.hpp"
+#include "Include/functions.hpp"
 
 int main()
 {
@@ -11,7 +11,7 @@ int main()
 	}
 	else
 	{
-		x_orig = cpp_int("Init");
+		x_orig = Init;
 	}
 	if (x_orig % 2 == 0)								// Prevents Collatz sequence from being even
 	{

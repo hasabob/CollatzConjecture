@@ -20,10 +20,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="functions.hpp">
+    <ClInclude Include="Include\config.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\config.hpp">
+    <ClInclude Include="Include\functions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
