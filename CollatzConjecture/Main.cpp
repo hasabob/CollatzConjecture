@@ -7,11 +7,14 @@
 #include <mutex>
 #include <string>
 #include <thread>
-using namespace std;
+#include <boost/multiprecision/cpp_int.hpp>
 
-unsigned long long x_orig;
-unsigned long long x_old;
-unsigned long long x;
+using namespace std;
+using namespace boost::multiprecision;
+
+cpp_int x_orig;
+cpp_int x_old;
+cpp_int x;
 bool timeoutReached = false;
 bool stopTimeout = false;
 bool stopProgram = false;
@@ -21,7 +24,7 @@ condition_variable cv;
 
 // This function writes to a file, after passing the 
 // filename as a string and a value as a number
-int saveFile(const char* filename, const unsigned long long value)
+int saveFile(const char* filename, const cpp_int value)
 {
 	// Setup
 	ofstream file(filename);
@@ -37,11 +40,11 @@ int saveFile(const char* filename, const unsigned long long value)
 }
 
 // This function writes to a file after taking the argument "filename"
-unsigned long long readFile(const char* filename)
+cpp_int readFile(const char* filename)
 {
 	string line;
 	ifstream file(filename);
-	unsigned long long value = 0;
+	cpp_int value = 0;
 
 	if (file)
 	{
@@ -62,7 +65,7 @@ unsigned long long readFile(const char* filename)
 	return value;
 }
 
-// This functtion waits for a timeout and 
+// This function waits for a timeout and 
 // then writes to a file for later testing
 int handleTimeout(int seconds, bool& timeoutReached, bool& stopTimeout)
 {
@@ -105,7 +108,7 @@ void timeoutWatcher(int seconds)
 int main()
 {
 	const char* SAVE_FILE = "collatz.log";
-	unsigned long long savedValue = readFile(SAVE_FILE);
+	cpp_int savedValue = readFile(SAVE_FILE);
 	cout << "Reading " << readFile(SAVE_FILE) << " from " << SAVE_FILE << "\n";
 	cout << savedValue << "\n";
 	if (savedValue != 0)
@@ -114,20 +117,20 @@ int main()
 	}
 	else
 	{
-		x_orig = 3;							/*295000000000000000000000*/
+		x_orig = cpp_int("295000000000000000000000");
 	}
 	if (x_orig % 2 == 0)								// Prevents Collatz sequence from being even
 	{
 		x_orig++;
 	}
-	unsigned long long x_old = x_orig;
+	cpp_int x_old = x_orig;
 	int i = 0;
 
 	thread watcher(timeoutWatcher, 5);
 
 	while (true)
 	{
-		unsigned long long x = x_old;
+		cpp_int x = x_old;
 
 		{
 			lock_guard<mutex> lock(mtx);
