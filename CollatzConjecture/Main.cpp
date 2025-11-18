@@ -1,4 +1,4 @@
-#include "Include/functions.hpp"
+#include "Include/Functions.hpp"
 
 int main()
 {
