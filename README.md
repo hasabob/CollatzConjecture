@@ -34,7 +34,13 @@ That should then make the programme run forever
 1. Open terminal and run `$ sudo apt-get install libboost-all-dev` (type password if necessary, if prompted, type Y or Yes)
 2. Download/Clone the repo (extract in necessary)
 3. Navigate to `$GIT_DIR/CollatzConjecture`
-4. compile the source code & run the binary
+4. compile the source code & run the binary with `$ g++ Main.cpp CollatzConjecture && ./CollatzConjecture`
+
+### Arch-based Unix Systems
+1. Open a terminal and run `$ sudo pacman -S boost` (type password if necessary, if prompted, type Y or Yes)
+2. Downliad/Clone the repo (extract if necessary)
+3. navigate to `GIT_DIR/CollazConjecture`
+4. compile the source code & run the binary with `$ g++ Main.cpp CollazConjecture && ./CollatzConjecture`
 
 ## Known Issues:
 Some issues/glitches in this programme are known. These issues include:
