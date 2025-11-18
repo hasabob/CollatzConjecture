@@ -1,4 +1,4 @@
-#include "Include/config.hpp"
+#include "config.hpp"
 
 cpp_int x_orig;
 cpp_int x_old;
